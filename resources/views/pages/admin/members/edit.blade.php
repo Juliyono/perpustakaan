@@ -1,0 +1,58 @@
+@extends('layouts.admin.main')
+@section('title', 'Admin Edit Member')
+
+@section('content')
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Edit Member</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active">
+                    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                </div>
+                <div class="breadcrumb-item active">
+                    <a href="{{ route('members.index') }}">Member</a>
+                </div>
+                <div class="breadcrumb-item">Edit Member</div>
+            </div>
+        </div>
+        
+        <a href="{{ route('members.index') }}" class="btn btn-icon icon-left btn-warning">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+        
+        <div class="card mt-4">
+            <form action="{{ route('members.update', $member->id) }}" class="needs-validation" novalidate="" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="nama">Nama Member</label>
+                                <input id="nama" type="text" class="form-control" name="nama" required="" value="{{ $member->nama }}">
+                                <div class="invalid-feedback">
+                                    Kolom ini harus diisi!
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="email">Email Member</label>
+                                <input id="email" type="email" class="form-control" name="email" required="" value="{{ $member->email }}">
+                                <div class="invalid-feedback">
+                                    Kolom ini harus diisi!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-icon icon-left btn-primary">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+@endsection
